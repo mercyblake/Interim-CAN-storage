@@ -1,143 +1,172 @@
 #include "stm32f30x.h"																										// Device header
-#include "PinAssignments.h"
-int GetADCData(uint8_t);
+//#include "PinAssignments.h"
+//int GetADCData(uint8_t);
 
-static __IO uint32_t TimeDelay;																									// Global variable for SysTick delay function
-__IO uint16_t  ADC1ConvertedValue = 0, ADC1ConvertedVoltage = 0, calibration_value = 0;
-__IO uint32_t TimingDelay = 0;
-/*
-Description:	Creates a configurable delay using the SysTick timer interrupt
-Parameters:		Time - Length of delay (ms)
-Returns:			-
-*/
-void Delay(__IO uint32_t Time)
-{
-	TimeDelay = Time;
-	while(TimeDelay != 0);
+//static __IO uint32_t TimeDelay;																									// Global variable for SysTick delay function
+//__IO uint16_t  ADC1ConvertedValue = 0, ADC1ConvertedVoltage = 0, calibration_value = 0;
+//__IO uint32_t TimingDelay = 0;
+///*
+//Description:	Creates a configurable delay using the SysTick timer interrupt
+//Parameters:		Time - Length of delay (ms)
+//Returns:			-
+//*/
+//void Delay(__IO uint32_t Time)
+//{
+//	TimeDelay = Time;
+//	while(TimeDelay != 0);
+//}
+
+///*
+//Description:	Interrupt handler for the SysTick timer
+//							1. Decrements the TimeDelay variable for the Delay() function
+//Parameters:		-
+//Returns:			-
+//*/
+//void SysTick_Handler(void)
+//{
+//	if(TimeDelay != 0)
+//	{
+//		TimeDelay--;
+//	}
+//}
+
+//void ConfigureTimers(void)
+//{
+//	// Configure SysTick timer to generate interrupts every 1ms
+//	if(SysTick_Config(SystemCoreClock / 1000))
+//	{
+//		// Capture SysTick initialisation error
+//		while(1);
+//	}
+//}
+//		
+//void ConfigureGPIO(void)
+//{
+//	GPIO_InitTypeDef GPIO_InitStruct;															//GPIO init structure
+//	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE); 					//Enable clock to GPIOA pins
+//	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE); 					//Enable clock to GPIOB pins
+
+//	//Configure Status LEDs  
+//	GPIO_InitStruct.GPIO_Pin = STATUS_R_PIN | STATUS_G_PIN | STATUS_B_PIN;
+//	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;										
+//	GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;							
+//	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
+//	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
+//	GPIO_Init(GPIOB, &GPIO_InitStruct);
+//	
+//	//Initialize all status LED's to be OFF
+//	GPIO_WriteBit(GPIOB, STATUS_B_PIN, 1);
+//	GPIO_WriteBit(GPIOB, STATUS_R_PIN, 1);
+//	GPIO_WriteBit(GPIOB, STATUS_G_PIN, 1);
+//	
+//	//Configure GPIO pins for I2C2 (Alternate Function mode, AF)
+//	//Pins are on GPIOA
+//	GPIO_InitStruct.GPIO_Pin = I2C2_SCL | I2C2_SDA;
+//	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;										
+//	GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;							
+//	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL; //external pull-up resistors used
+//	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
+//	GPIO_Init(GPIOA, &GPIO_InitStruct);
+//	
+//	//Configure GYRO Interrupt Pin (INPUT)
+//	//GPIOB 
+//	GPIO_InitStruct.GPIO_Pin = GYRO_DRDY;
+//	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;										
+//	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
+//	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
+//	GPIO_Init(GPIOB, &GPIO_InitStruct);
+//}
+
+//void ConfigureClock(void)
+//{
+//}
+
+//void ConfigureADC(void)
+//{
+//	ADC_InitTypeDef       ADC_InitStruct;
+//	ADC_CommonInitTypeDef ADC_CommonInitStruct;
+
+//  /*!< At this stage the microcontroller clock setting is already configured, 
+//       this is done through SystemInit() function which is called from startup
+//       file (startup_stm32f30x.s) before to branch to application main.
+//       To reconfigure the default setting of SystemInit() function, refer to
+//       system_stm32f30x.c file
+//     */ 
+
+//  /* Configure the ADC clock */
+//  RCC_ADCCLKConfig(RCC_ADC12PLLCLK_Div2);
+//  
+//  /* Enable ADC1 clock */
+//  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_ADC12, ENABLE);
+// 
+//  ADC_StructInit(&ADC_InitStruct);
+
+//  /* Calibration procedure */  
+//	ADC_VoltageRegulatorCmd(ADC1, ENABLE);
+//	
+//	//Need to wait a bit after turning on the power supply. 1ms is plenty 
+//	Delay(1);
+//  
+//  ADC_SelectCalibrationMode(ADC1, ADC_CalibrationMode_Single);
+//  ADC_StartCalibration(ADC1);
+//  
+//  while(ADC_GetCalibrationStatus(ADC1) != RESET );
+//  calibration_value = ADC_GetCalibrationValue(ADC1);
+//     
+//  ADC_CommonInitStruct.ADC_Mode = ADC_Mode_Independent;                                                                    
+//  ADC_CommonInitStruct.ADC_Clock = ADC_Clock_AsynClkMode;                    
+//  ADC_CommonInitStruct.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;             
+//  ADC_CommonInitStruct.ADC_DMAMode = ADC_DMAMode_OneShot;                  
+//  ADC_CommonInitStruct.ADC_TwoSamplingDelay = 0;          
+//  ADC_CommonInit(ADC1, &ADC_CommonInitStruct);
+//  
+//  ADC_InitStruct.ADC_ContinuousConvMode = ADC_ContinuousConvMode_Enable;
+//  ADC_InitStruct.ADC_Resolution = ADC_Resolution_12b; 
+//  ADC_InitStruct.ADC_ExternalTrigConvEvent = ADC_ExternalTrigConvEvent_0;         
+//  ADC_InitStruct.ADC_ExternalTrigEventEdge = ADC_ExternalTrigEventEdge_None;
+//  ADC_InitStruct.ADC_DataAlign = ADC_DataAlign_Right;
+//  ADC_InitStruct.ADC_OverrunMode = ADC_OverrunMode_Disable;   
+//  ADC_InitStruct.ADC_AutoInjMode = ADC_AutoInjec_Disable;  
+//  ADC_InitStruct.ADC_NbrOfRegChannel = 1;
+//  ADC_Init(ADC1, &ADC_InitStruct);
+//  
+//  /* ADC1 regular channel2 configuration */ 
+//  ADC_RegularChannelConfig(ADC1, ADC_Channel_5, 1, ADC_SampleTime_7Cycles5);
+//}
+
+
+
+
+void Init_TxMes(CanTxMsg *TxMessage){
+          /* Transmit INITIALIZATION*/
+     TxMessage->IDE = CAN_ID_STD;
+     TxMessage->DLC = 2; 
+     TxMessage->StdId = 0x321;
+     TxMessage->RTR = CAN_RTR_DATA;
 }
 
-/*
-Description:	Interrupt handler for the SysTick timer
-							1. Decrements the TimeDelay variable for the Delay() function
-Parameters:		-
-Returns:			-
-*/
-void SysTick_Handler(void)
+void Init_RxMes(CanRxMsg *RxMessage)
 {
-	if(TimeDelay != 0)
-	{
-		TimeDelay--;
-	}
+  uint8_t i = 0;
+
+  RxMessage->StdId = 0;
+  RxMessage->IDE = CAN_ID_STD;
+  RxMessage->DLC = 0;
+  RxMessage->FMI = 0;
+  for (i = 0; i < 8; i++)
+  {
+    RxMessage->Data[i] = 0;
+  }
 }
 
-void ConfigureTimers(void)
-{
-	// Configure SysTick timer to generate interrupts every 1ms
-	if(SysTick_Config(SystemCoreClock / 1000))
-	{
-		// Capture SysTick initialisation error
-		while(1);
-	}
-}
-		
-void ConfigureGPIO(void)
-{
-	GPIO_InitTypeDef GPIO_InitStruct;															//GPIO init structure
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE); 					//Enable clock to GPIOA pins
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE); 					//Enable clock to GPIOB pins
-
-	//Configure Status LEDs  
-	GPIO_InitStruct.GPIO_Pin = STATUS_R_PIN | STATUS_G_PIN | STATUS_B_PIN;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;										
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;							
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_Init(GPIOB, &GPIO_InitStruct);
-	
-	//Initialize all status LED's to be OFF
-	GPIO_WriteBit(GPIOB, STATUS_B_PIN, 1);
-	GPIO_WriteBit(GPIOB, STATUS_R_PIN, 1);
-	GPIO_WriteBit(GPIOB, STATUS_G_PIN, 1);
-	
-	//Configure GPIO pins for I2C2 (Alternate Function mode, AF)
-	//Pins are on GPIOA
-	GPIO_InitStruct.GPIO_Pin = I2C2_SCL | I2C2_SDA;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;										
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;							
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL; //external pull-up resistors used
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_Init(GPIOA, &GPIO_InitStruct);
-	
-	//Configure GYRO Interrupt Pin (INPUT)
-	//GPIOB 
-	GPIO_InitStruct.GPIO_Pin = GYRO_DRDY;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;										
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_Init(GPIOB, &GPIO_InitStruct);
-}
-
-void ConfigureClock(void)
-{
-}
-
-void ConfigureADC(void)
-{
-	ADC_InitTypeDef       ADC_InitStruct;
-	ADC_CommonInitTypeDef ADC_CommonInitStruct;
-
-  /*!< At this stage the microcontroller clock setting is already configured, 
-       this is done through SystemInit() function which is called from startup
-       file (startup_stm32f30x.s) before to branch to application main.
-       To reconfigure the default setting of SystemInit() function, refer to
-       system_stm32f30x.c file
-     */ 
-
-  /* Configure the ADC clock */
-  RCC_ADCCLKConfig(RCC_ADC12PLLCLK_Div2);
-  
-  /* Enable ADC1 clock */
-  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_ADC12, ENABLE);
- 
-  ADC_StructInit(&ADC_InitStruct);
-
-  /* Calibration procedure */  
-	ADC_VoltageRegulatorCmd(ADC1, ENABLE);
-	
-	//Need to wait a bit after turning on the power supply. 1ms is plenty 
-	Delay(1);
-  
-  ADC_SelectCalibrationMode(ADC1, ADC_CalibrationMode_Single);
-  ADC_StartCalibration(ADC1);
-  
-  while(ADC_GetCalibrationStatus(ADC1) != RESET );
-  calibration_value = ADC_GetCalibrationValue(ADC1);
-     
-  ADC_CommonInitStruct.ADC_Mode = ADC_Mode_Independent;                                                                    
-  ADC_CommonInitStruct.ADC_Clock = ADC_Clock_AsynClkMode;                    
-  ADC_CommonInitStruct.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;             
-  ADC_CommonInitStruct.ADC_DMAMode = ADC_DMAMode_OneShot;                  
-  ADC_CommonInitStruct.ADC_TwoSamplingDelay = 0;          
-  ADC_CommonInit(ADC1, &ADC_CommonInitStruct);
-  
-  ADC_InitStruct.ADC_ContinuousConvMode = ADC_ContinuousConvMode_Enable;
-  ADC_InitStruct.ADC_Resolution = ADC_Resolution_12b; 
-  ADC_InitStruct.ADC_ExternalTrigConvEvent = ADC_ExternalTrigConvEvent_0;         
-  ADC_InitStruct.ADC_ExternalTrigEventEdge = ADC_ExternalTrigEventEdge_None;
-  ADC_InitStruct.ADC_DataAlign = ADC_DataAlign_Right;
-  ADC_InitStruct.ADC_OverrunMode = ADC_OverrunMode_Disable;   
-  ADC_InitStruct.ADC_AutoInjMode = ADC_AutoInjec_Disable;  
-  ADC_InitStruct.ADC_NbrOfRegChannel = 1;
-  ADC_Init(ADC1, &ADC_InitStruct);
-  
-  /* ADC1 regular channel2 configuration */ 
-  ADC_RegularChannelConfig(ADC1, ADC_Channel_5, 1, ADC_SampleTime_7Cycles5);
-}
-
-
+/* 
+ * things to test: whether code works on other GPIO pins.
+ */
 
 void ConfigureCAN(void)
 {
+	
+	
 	GPIO_InitTypeDef GPIO_InitStruct;
 	NVIC_InitTypeDef NVIC_InitStruct;
 	CAN_InitTypeDef CAN_InitStruct;
@@ -145,8 +174,6 @@ void ConfigureCAN(void)
 	
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_CAN1, ENABLE);
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE); 
-
-	
    
 	/* Configure CAN1 RX pin */
   GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8;
@@ -212,63 +239,78 @@ void ConfigureCAN(void)
 
 
 
-void ConfigureSPI(void)
-{
-}
+//void ConfigureSPI(void)
+//{
+//}
 
-void ConfigureI2C(void)
-{
-	I2C_InitTypeDef I2C_InitStruct;
-	NVIC_InitTypeDef NVIC_InitStruct;
+//void ConfigureI2C(void)
+//{
+//	I2C_InitTypeDef I2C_InitStruct;
+//	NVIC_InitTypeDef NVIC_InitStruct;
 
-	//Enable the clock to I2C2
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
-	
-	//Reset I2C2
-	RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, ENABLE);
-	RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, DISABLE);
-	
-	I2C_InitStruct.I2C_Mode = I2C_Mode_I2C;
-	I2C_InitStruct.I2C_OwnAddress1 = OWN_I2C_ADDRESS;
-	I2C_InitStruct.I2C_Ack = I2C_Ack_Enable;
-	I2C_InitStruct.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-	I2C_InitStruct.I2C_Timing = 0xC062121F;                                   //this is the wrong value
+//	//Enable the clock to I2C2
+//	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
+//	
+//	//Reset I2C2
+//	RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, ENABLE);
+//	RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, DISABLE);
+//	
+//	I2C_InitStruct.I2C_Mode = I2C_Mode_I2C;
+//	I2C_InitStruct.I2C_OwnAddress1 = OWN_I2C_ADDRESS;
+//	I2C_InitStruct.I2C_Ack = I2C_Ack_Enable;
+//	I2C_InitStruct.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+//	I2C_InitStruct.I2C_Timing = 0xC062121F;                                   //this is the wrong value
 
-	I2C_StructInit(&I2C_InitStruct);
-	
-	//Transmit direction 
-	I2C_MasterRequestConfig(I2C2,I2C_Direction_Transmitter);
+//	I2C_StructInit(&I2C_InitStruct);
+//	
+//	//Transmit direction 
+//	I2C_MasterRequestConfig(I2C2,I2C_Direction_Transmitter);
 
-	//Configure slave address - Gyroscope
-	I2C_SlaveAddressConfig(I2C2, GYRO_I2C_ADDRESS);
+//	//Configure slave address - Gyroscope
+//	I2C_SlaveAddressConfig(I2C2, GYRO_I2C_ADDRESS);
 
-	//Set number of bytes per message
-	I2C_NumberOfBytesConfig(I2C2,2);
-	
-	I2C_AutoEndCmd(I2C2,ENABLE);
-}
+//	//Set number of bytes per message
+//	I2C_NumberOfBytesConfig(I2C2,2);
+//	
+//	I2C_AutoEndCmd(I2C2,ENABLE);
+//}
 
-void SendI2CData(void)
-{
-	I2C_SendData(I2C2,0x80);
-	I2C_Cmd(I2C2,ENABLE);
-	I2C_GenerateSTART(I2C2, ENABLE);
-}
+//void SendI2CData(void)
+//{
+//	I2C_SendData(I2C2,0x80);
+//	I2C_Cmd(I2C2,ENABLE);
+//	I2C_GenerateSTART(I2C2, ENABLE);
+//}
 
 int main(void)
 {
+	int i;
+	uint8_t TransmitMailbox = 0;
+	CanTxMsg TxMessage;
+	ConfigureCAN();
+
+	Init_TxMes(&TxMessage);
+
 //	int temp = 0;
 //	ConfigureTimers();
 //	ConfigureGPIO();
 //	ConfigureClock();
 //	ConfigureADC();
-	ConfigureCAN();
 //	ConfigureSPI();
 //	ConfigureI2C();
 //	SendI2CData();
 
 	while(1)
+		
 	{
+		TxMessage.Data[0] = 0xAB;
+    TxMessage.Data[1] = 0xCD;
+
+    TransmitMailbox = CAN_Transmit(CAN1,&TxMessage);
+
+    i = 0;
+    while((CAN_TransmitStatus(CAN1, TransmitMailbox) != CANTXOK) && (i != 0xFF)) // I put a breakpoint here to check and found the message is pending
+			i++;
 //		//ADC testing code
 //		temp = GetADCData(ADC_Channel_5);
 //		if (temp != 0)

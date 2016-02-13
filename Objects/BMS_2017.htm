@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\BMS_2017.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\BMS_2017.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Tue Jan 19 00:31:35 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Mon Feb 08 16:09:47 2016
 <BR><P>
-<H3>Maximum Stack Usage =         76 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         92 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; ConfigureADC &rArr; ADC_RegularChannelConfig
+main &rArr; ConfigureCAN &rArr; GPIO_PinAFConfig
 <P>
 <H3>
 Mutually Recursive functions
@@ -19,6 +19,7 @@ Mutually Recursive functions
  <LI><a href="#[6]">SVC_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[6]">SVC_Handler</a><BR>
  <LI><a href="#[7]">DebugMon_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[7]">DebugMon_Handler</a><BR>
  <LI><a href="#[8]">PendSV_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[8]">PendSV_Handler</a><BR>
+ <LI><a href="#[9]">SysTick_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[9]">SysTick_Handler</a><BR>
  <LI><a href="#[1c]">ADC1_IRQHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1c]">ADC1_IRQHandler</a><BR>
 </UL>
 <P>
@@ -66,7 +67,7 @@ Function Pointers
  <LI><a href="#[2b]">SPI2_IRQHandler</a> from startup_stm32f302x8.o(.text) referenced from startup_stm32f302x8.o(RESET)
  <LI><a href="#[32]">SPI3_IRQHandler</a> from startup_stm32f302x8.o(.text) referenced from startup_stm32f302x8.o(RESET)
  <LI><a href="#[6]">SVC_Handler</a> from startup_stm32f302x8.o(.text) referenced from startup_stm32f302x8.o(RESET)
- <LI><a href="#[9]">SysTick_Handler</a> from main.o(i.SysTick_Handler) referenced from startup_stm32f302x8.o(RESET)
+ <LI><a href="#[9]">SysTick_Handler</a> from startup_stm32f302x8.o(.text) referenced from startup_stm32f302x8.o(RESET)
  <LI><a href="#[3d]">SystemInit</a> from system_stm32f3xx.o(i.SystemInit) referenced from startup_stm32f302x8.o(.text)
  <LI><a href="#[c]">TAMP_STAMP_IRQHandler</a> from startup_stm32f302x8.o(.text) referenced from startup_stm32f302x8.o(RESET)
  <LI><a href="#[22]">TIM1_BRK_TIM15_IRQHandler</a> from startup_stm32f302x8.o(.text) referenced from startup_stm32f302x8.o(RESET)
@@ -96,7 +97,7 @@ Global Symbols
 <P><STRONG><a name="[3e]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f302x8.o(.text)
 </UL>
-<P><STRONG><a name="[69]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[51]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[40]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -106,15 +107,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[6a]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[52]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[6b]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[53]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[6c]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[54]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[6d]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[55]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[6e]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[56]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[3f]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f302x8.o(.text))
 
@@ -171,6 +172,13 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f302x8.o(RESET)
+</UL>
+<P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_stm32f302x8.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f302x8.o(RESET)
 </UL>
@@ -334,257 +342,116 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[6f]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[57]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
-<P><STRONG><a name="[5c]"></a>ADC_Cmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADCData
+<P><STRONG><a name="[43]"></a>CAN_DeInit</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, stm32f30x_can.o(i.CAN_DeInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = CAN_DeInit
 </UL>
-
-<P><STRONG><a name="[4d]"></a>ADC_CommonInit</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, stm32f30x_adc.o(i.ADC_CommonInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ADC_CommonInit
+<BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphResetCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
 </UL>
 
-<P><STRONG><a name="[4b]"></a>ADC_GetCalibrationStatus</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_GetCalibrationStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
+<P><STRONG><a name="[4d]"></a>CAN_FilterInit</STRONG> (Thumb, 258 bytes, Stack size 8 bytes, stm32f30x_can.o(i.CAN_FilterInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = CAN_FilterInit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
 </UL>
 
-<P><STRONG><a name="[4c]"></a>ADC_GetCalibrationValue</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_GetCalibrationValue))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
+<P><STRONG><a name="[4c]"></a>CAN_Init</STRONG> (Thumb, 292 bytes, Stack size 12 bytes, stm32f30x_can.o(i.CAN_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = CAN_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
 </UL>
 
-<P><STRONG><a name="[5f]"></a>ADC_GetConversionValue</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_GetConversionValue))
-<BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADCData
+<P><STRONG><a name="[4b]"></a>CAN_StructInit</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, stm32f30x_can.o(i.CAN_StructInit))
+<BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
 </UL>
 
-<P><STRONG><a name="[5d]"></a>ADC_GetFlagStatus</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_GetFlagStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADCData
-</UL>
-
-<P><STRONG><a name="[4e]"></a>ADC_Init</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, stm32f30x_adc.o(i.ADC_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ADC_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
-</UL>
-
-<P><STRONG><a name="[4f]"></a>ADC_RegularChannelConfig</STRONG> (Thumb, 250 bytes, Stack size 20 bytes, stm32f30x_adc.o(i.ADC_RegularChannelConfig))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = ADC_RegularChannelConfig
-</UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADCData
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
-</UL>
-
-<P><STRONG><a name="[49]"></a>ADC_SelectCalibrationMode</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_SelectCalibrationMode))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
-</UL>
-
-<P><STRONG><a name="[4a]"></a>ADC_StartCalibration</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_StartCalibration))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
-</UL>
-
-<P><STRONG><a name="[5e]"></a>ADC_StartConversion</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_StartConversion))
-<BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADCData
-</UL>
-
-<P><STRONG><a name="[46]"></a>ADC_StructInit</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_StructInit))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
-</UL>
-
-<P><STRONG><a name="[47]"></a>ADC_VoltageRegulatorCmd</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, stm32f30x_adc.o(i.ADC_VoltageRegulatorCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
-</UL>
-
-<P><STRONG><a name="[43]"></a>ConfigureADC</STRONG> (Thumb, 162 bytes, Stack size 56 bytes, main.o(i.ConfigureADC))
-<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = ConfigureADC &rArr; ADC_RegularChannelConfig
-</UL>
-<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_ADCCLKConfig
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_VoltageRegulatorCmd
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_StructInit
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_StartCalibration
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_SelectCalibrationMode
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_RegularChannelConfig
-<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Init
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_GetCalibrationValue
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_GetCalibrationStatus
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_CommonInit
-<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay
+<P><STRONG><a name="[4f]"></a>CAN_Transmit</STRONG> (Thumb, 294 bytes, Stack size 8 bytes, stm32f30x_can.o(i.CAN_Transmit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = CAN_Transmit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[67]"></a>ConfigureCAN</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(i.ConfigureCAN))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[66]"></a>ConfigureClock</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(i.ConfigureClock))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[50]"></a>ConfigureGPIO</STRONG> (Thumb, 154 bytes, Stack size 16 bytes, main.o(i.ConfigureGPIO))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = ConfigureGPIO &rArr; GPIO_Init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<P><STRONG><a name="[50]"></a>CAN_TransmitStatus</STRONG> (Thumb, 138 bytes, Stack size 8 bytes, stm32f30x_can.o(i.CAN_TransmitStatus))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = CAN_TransmitStatus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[53]"></a>ConfigureI2C</STRONG> (Thumb, 86 bytes, Stack size 32 bytes, main.o(i.ConfigureI2C))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = ConfigureI2C
+<P><STRONG><a name="[45]"></a>ConfigureCAN</STRONG> (Thumb, 278 bytes, Stack size 48 bytes, main.o(i.ConfigureCAN))
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = ConfigureCAN &rArr; GPIO_PinAFConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphResetCmd
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_StructInit
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_SlaveAddressConfig
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_NumberOfBytesConfig
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_MasterRequestConfig
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_AutoEndCmd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[68]"></a>ConfigureSPI</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(i.ConfigureSPI))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[65]"></a>ConfigureTimers</STRONG> (Thumb, 90 bytes, Stack size 12 bytes, main.o(i.ConfigureTimers))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = ConfigureTimers
+<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinAFConfig
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_StructInit
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_Init
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_FilterInit
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_DeInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[48]"></a>Delay</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, main.o(i.Delay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Delay
-</UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
-</UL>
-
-<P><STRONG><a name="[51]"></a>GPIO_Init</STRONG> (Thumb, 150 bytes, Stack size 20 bytes, stm32f30x_gpio.o(i.GPIO_Init))
+<P><STRONG><a name="[48]"></a>GPIO_Init</STRONG> (Thumb, 150 bytes, Stack size 20 bytes, stm32f30x_gpio.o(i.GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureGPIO
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
 </UL>
 
-<P><STRONG><a name="[52]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f30x_gpio.o(i.GPIO_WriteBit))
+<P><STRONG><a name="[49]"></a>GPIO_PinAFConfig</STRONG> (Thumb, 70 bytes, Stack size 20 bytes, stm32f30x_gpio.o(i.GPIO_PinAFConfig))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIO_PinAFConfig
+</UL>
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
+</UL>
+
+<P><STRONG><a name="[4e]"></a>Init_TxMes</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, main.o(i.Init_TxMes))
 <BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureGPIO
 </UL>
 
-<P><STRONG><a name="[5b]"></a>GetADCData</STRONG> (Thumb, 108 bytes, Stack size 8 bytes, main.o(i.GetADCData))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = GetADCData &rArr; ADC_RegularChannelConfig
+<P><STRONG><a name="[4a]"></a>NVIC_Init</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, stm32f30x_misc.o(i.NVIC_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = NVIC_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_StartConversion
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_RegularChannelConfig
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_GetFlagStatus
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_GetConversionValue
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Cmd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
 </UL>
 
-<P><STRONG><a name="[5a]"></a>I2C_AutoEndCmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f30x_i2c.o(i.I2C_AutoEndCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureI2C
+<P><STRONG><a name="[47]"></a>RCC_AHBPeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f30x_rcc.o(i.RCC_AHBPeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
 </UL>
 
-<P><STRONG><a name="[62]"></a>I2C_Cmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f30x_i2c.o(i.I2C_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendI2CData
+<P><STRONG><a name="[46]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f30x_rcc.o(i.RCC_APB1PeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
 </UL>
 
-<P><STRONG><a name="[63]"></a>I2C_GenerateSTART</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f30x_i2c.o(i.I2C_GenerateSTART))
-<BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendI2CData
+<P><STRONG><a name="[44]"></a>RCC_APB1PeriphResetCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f30x_rcc.o(i.RCC_APB1PeriphResetCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_DeInit
 </UL>
 
-<P><STRONG><a name="[57]"></a>I2C_MasterRequestConfig</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f30x_i2c.o(i.I2C_MasterRequestConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureI2C
-</UL>
-
-<P><STRONG><a name="[59]"></a>I2C_NumberOfBytesConfig</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f30x_i2c.o(i.I2C_NumberOfBytesConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureI2C
-</UL>
-
-<P><STRONG><a name="[61]"></a>I2C_SendData</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f30x_i2c.o(i.I2C_SendData))
-<BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendI2CData
-</UL>
-
-<P><STRONG><a name="[58]"></a>I2C_SlaveAddressConfig</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f30x_i2c.o(i.I2C_SlaveAddressConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureI2C
-</UL>
-
-<P><STRONG><a name="[56]"></a>I2C_StructInit</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f30x_i2c.o(i.I2C_StructInit))
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureI2C
-</UL>
-
-<P><STRONG><a name="[44]"></a>RCC_ADCCLKConfig</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, stm32f30x_rcc.o(i.RCC_ADCCLKConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
-</UL>
-
-<P><STRONG><a name="[45]"></a>RCC_AHBPeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f30x_rcc.o(i.RCC_AHBPeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureGPIO
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
-</UL>
-
-<P><STRONG><a name="[54]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f30x_rcc.o(i.RCC_APB1PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureI2C
-</UL>
-
-<P><STRONG><a name="[55]"></a>RCC_APB1PeriphResetCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f30x_rcc.o(i.RCC_APB1PeriphResetCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureI2C
-</UL>
-
-<P><STRONG><a name="[60]"></a>SendI2CData</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, main.o(i.SendI2CData))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SendI2CData
-</UL>
-<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_SendData
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_GenerateSTART
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Cmd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, main.o(i.SysTick_Handler))
-<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f302x8.o(RESET)
-</UL>
-<P><STRONG><a name="[3d]"></a>SystemInit</STRONG> (Thumb, 112 bytes, Stack size 8 bytes, system_stm32f3xx.o(i.SystemInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SystemInit &rArr; SetSysClock
-</UL>
-<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
-</UL>
+<P><STRONG><a name="[3d]"></a>SystemInit</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, system_stm32f3xx.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f302x8.o(.text)
 </UL>
-<P><STRONG><a name="[70]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[58]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[71]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[59]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[72]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[5a]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[3c]"></a>main</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = main &rArr; ConfigureADC &rArr; ADC_RegularChannelConfig
+<P><STRONG><a name="[3c]"></a>main</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = main &rArr; ConfigureCAN &rArr; GPIO_PinAFConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendI2CData
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADCData
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureTimers
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureSPI
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureI2C
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureGPIO
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureClock
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureADC
+<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_TransmitStatus
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_Transmit
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_TxMes
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureCAN
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL><P>
 <H3>
 Local Symbols
-</H3>
-<P><STRONG><a name="[64]"></a>SetSysClock</STRONG> (Thumb, 188 bytes, Stack size 12 bytes, system_stm32f3xx.o(i.SetSysClock))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClock
-</UL>
-<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
-</UL>
-<P>
+</H3><P>
 <H3>
 Undefined Global Symbols
 </H3><HR></body></html>

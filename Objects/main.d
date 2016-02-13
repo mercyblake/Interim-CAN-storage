@@ -33,4 +33,3 @@
 .\objects\main.o: .\STM32F3_SPL_v1.2.3\inc\stm32f30x_usart.h
 .\objects\main.o: .\STM32F3_SPL_v1.2.3\inc\stm32f30x_wwdg.h
 .\objects\main.o: .\STM32F3_SPL_v1.2.3\inc\stm32f30x_misc.h
-.\objects\main.o: PinAssignments.h
